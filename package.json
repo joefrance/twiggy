@@ -1,0 +1,27 @@
+{
+  "name": "twiggy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async-mysql": "^1.0.1",
+    "mssql": "^4.0.4",
+    "pluralize": "^5.0.0",
+    "split-camelcase": "^1.0.1",
+    "twig": "^1.10.5"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.15",
+    "node-mssql": "0.0.1",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.2.1",
+    "typescript": "^2.4.2"
+  },
+  "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
