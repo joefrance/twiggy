@@ -33,10 +33,16 @@ if  (
 async function callQueriesSync(config: any): Promise<void> {
 
     let result = await qh.connectToServer(config);
+
+    // Get the table list from the database
+    // in the config
     let qr = await qh.executeQueryAndWait("select [name] from sysobjects where xtype = 'U' and [name] not like '%_shadow'");
     for(let ix=0; ix < qr.result.recordset.length; ix++) {
-        let sql = `select count(1) NumRows from [${qr.result.recordset[ix].name}]`;
 
+        // Loop through each
+        // table and count the rows
+        let sql = `select count(1) NumRows from [${qr.result.recordset[ix].name}]`;
+        
         let qr2 = await qh.executeQueryAndWait(sql);
 
         console.log(`${qr.result.recordset[ix].name}: ${qr2.result.recordset[0].NumRows}`);

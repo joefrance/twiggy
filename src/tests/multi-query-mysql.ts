@@ -29,10 +29,14 @@ async function callQueriesSync(config: any, qh: MySQLHelper.ExecuteQueryHelper):
 
     let result = await qh.connectToServer(config);
 
+    // Get the table list from the database
+    // in the config
     let tableSql = `SELECT TABLE_SCHEMA, TABLE_NAME FROM information_schema.TABLES where TABLE_SCHEMA = ?;`;
 
     let qr = await qh.executeQueryAndWait(tableSql, [ config.database ]);
 
+    // Loop through each
+    // table and count the rows
     for(let ix=0; ix < qr.result.rows.length; ix++) {
         let sql = `select count(1) NumRows from ${qr.result.rows[ix].TABLE_SCHEMA}.${qr.result.rows[ix].TABLE_NAME}`;
 
