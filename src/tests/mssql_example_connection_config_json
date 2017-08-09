@@ -1,0 +1,10 @@
+{
+  "database": "database",
+  "server": "localhost",
+  "driver": "mssql",
+  "user": "youruserid",
+  "password": "yourpassword",
+  "options": {
+    "trustedConnection": false
+  }
+}
