@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "async-mysql": "^1.0.1",
     "mssql": "^4.0.4",
+    "mysql2": "^1.4.0",
     "pluralize": "^5.0.0",
     "split-camelcase": "^1.0.1",
     "twig": "^1.10.5"

@@ -1,0 +1,6 @@
+{
+  "host": "localhost",
+  "user": "youruserid",
+  "password": "yourpassword",
+  "database": "yourdatabase"
+}

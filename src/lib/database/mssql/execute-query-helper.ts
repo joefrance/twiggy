@@ -1,17 +1,13 @@
 const sql = require('mssql');
 const ConnectionPool = require('mssql');
+
+import { QueryResult } from '../query-result.model';
+
 export namespace MSSQLHelper
 {
-    export class QueryResult
-    {
-        result: any;
-        exception: any;
-    }
-
     export class ExecuteQueryHelper
     {
         pool: any = null;
-        poolConnected: boolean = false;
         isConnected: boolean = false;
 
         close() {
@@ -24,9 +20,9 @@ export namespace MSSQLHelper
 
             try
             {
-                this.poolConnected = false;
+                this.isConnected = false;
                 this.pool = await sql.connect(config);
-                this.poolConnected = true;
+                this.isConnected = true;
 
                 queryResult.result = this.pool;
             }

@@ -1,38 +1,33 @@
-const mysql = require("mysql");
+const mysql = require("mysql2/promise");
+
+import { QueryResult } from '../query-result.model';
 
 export namespace MySQLHelper
 {
-    export class QueryResult
-    {
-        result: any;
-        exception: any;
-    }
-
     export class ExecuteQueryHelper
     {
         isConnected: boolean = false;
-        mysqlConnection: any = null;
+        connection: any = null;
         callResponse: any = null;
         
         close() {
             if(this.isConnected === true) {
-                this.mysqlConnection.end();
+                this.connection.end();
             }
         }
 
-        async connectToServer(connection: any): Promise<QueryResult> {
+        async connectToServer(config: any): Promise<QueryResult> {
 
             var queryResult: QueryResult = new QueryResult();
 
             try
             {
-                this.mysqlConnection = mysql.createConnection(connection);
-                
                 this.isConnected = false;
-                this.callResponse = await this.mysqlConnection.connect();
+                this.connection = await mysql.createConnection(config);
+                //console.dir(this.connection);
                 this.isConnected = true;
 
-                queryResult.result = this.callResponse;
+                queryResult.result = this.connection;
             }
             catch(ex)
             {
@@ -43,13 +38,14 @@ export namespace MySQLHelper
             return queryResult;
         }
 
-        async executeQueryAndWait(sqlQuery: string): Promise<QueryResult> {
+        async executeQueryAndWait(sqlQuery: string, params: any): Promise<QueryResult> {
 
             var queryResult: QueryResult = new QueryResult();
 
             try
             {
-                queryResult.result = await this.mysqlConnection.query(sqlQuery);
+                const [rows, fields] = await this.connection.execute(sqlQuery, params);
+                queryResult.result = { rows: rows, fields: fields };
             }
             catch(ex)
             {
