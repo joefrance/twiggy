@@ -2,7 +2,10 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "/usr/local/bin/tsc",
+    // Mac
+    //"command": "/usr/local/bin/tsc",
+    // Windows
+    "command": "C:\\Program Files (x86)\\Microsoft SDKs\\TypeScript\\2.4\\tsc.exe",
     "isShellCommand": true,
     "args": ["-p", "."],
     "showOutput": "silent",

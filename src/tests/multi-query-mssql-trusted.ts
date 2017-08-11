@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-import { MSSQLHelper } from "../lib/database/mssql/execute-query-helper";
+import { MSSQLHelperTrusted } from "../lib/database/mssql/execute-query-helper-trusted-windows-only";
 
 var args = process.argv.slice(2);
 
@@ -21,7 +21,7 @@ if  (
 } else {
     var config = JSON.parse(fs.readFileSync(argv.configpath, 'utf8'));
 
-    var qh: MSSQLHelper.ExecuteQueryHelper = new MSSQLHelper.ExecuteQueryHelper();
+    var qh: MSSQLHelperTrusted.ExecuteQueryHelper = new MSSQLHelperTrusted.ExecuteQueryHelper();
 
     callQueriesSync(config);
 
@@ -34,6 +34,8 @@ async function callQueriesSync(config: any): Promise<void> {
 
     let result = await qh.connectToServer(config);
 
+    console.dir(result.result.connect);
+
     if(result.exception != null) {
         console.log(result.exception);
         return;
@@ -41,17 +43,18 @@ async function callQueriesSync(config: any): Promise<void> {
 
     // Get the table list from the database
     // in the config
-    let qr = await qh.executeQueryAndWait("select [name] from sysobjects where xtype = 'U' and [name] not like '%_shadow'");
-    for(let ix=0; ix < qr.result.recordset.length; ix++) {
+    //let qr = await qh.executeQueryAndWait("select [name] from sysobjects where xtype = 'U' and [name] not like '%_shadow'");
+    //console.dir(qr);
+    // for(let ix=0; ix < qr.result.recordsets.length; ix++) {
 
-        // Loop through each
-        // table and count the rows
-        let sql = `select count(1) NumRows from [${qr.result.recordset[ix].name}]`;
+    //     // Loop through each
+    //     // table and count the rows
+    //     let sql = `select count(1) NumRows from [${qr.result.recordsets[ix].name}]`;
         
-        let qr2 = await qh.executeQueryAndWait(sql);
+    //     let qr2 = await qh.executeQueryAndWait(sql);
 
-        console.log(`${qr.result.recordset[ix].name}: ${qr2.result.recordset[0].NumRows}`);
-    }
+    //     console.log(`${qr.result.recordset[ix].name}: ${qr2.result.recordset[0].NumRows}`);
+    // }
         
     qh.close();
 }

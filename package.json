@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "msnodesqlv8": "^0.3.1",
     "mssql": "^4.0.4",
     "mysql2": "^1.4.0",
     "pluralize": "^5.0.0",
