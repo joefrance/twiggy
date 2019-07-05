@@ -1,7 +1,7 @@
 const sql = require('mssql/msnodesqlv8')
 
 const pool = new sql.ConnectionPool({
-  database: 'Puppets',
+  database: 'yourdatabasename',
   server: 'localhost',
   driver: 'msnodesqlv8',
   options: {
