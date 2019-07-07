@@ -8,7 +8,7 @@ These notes sketched quickly from discussions with other contributing members.
 
 Creating UIs could be done in a code-first-ui technique similar to code-first model similar to Sequelize.
 
-An example might look like this:
+> An example might look like this:
 
 ````
 module.exports = function(twiggy, ControlTypes) {
