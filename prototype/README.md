@@ -10,6 +10,7 @@ Creating UIs could be done in a code-first-ui technique similar to code-first mo
 
 An example might look like this:
 
+````
 module.exports = function(twiggy, ControlTypes) {
   const Contact = sequelize.define('Contact', {
     first_name: {
@@ -43,6 +44,8 @@ module.exports = function(twiggy, ControlTypes) {
 
   return Contact;
 };
+
+````
 
 TODO: Create a system of UI-layout, perhaps CSS grid, to allow placement of fields/controls on a form
 
