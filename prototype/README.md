@@ -12,7 +12,7 @@ Creating UIs could be done in a code-first-ui technique similar to code-first mo
 
 ````
 module.exports = function(twiggy, ControlTypes) {
-  const Contact = sequelize.define('Contact', {
+  const Contact = twiggy.define('Contact', {
     first_name: {
       type: ControlTypes.TEXTBOX,
       allowNull: true
