@@ -59,7 +59,7 @@ A generator takes an input(s) and uses it to generate and ouput(s). Generators c
 
 An example is a graphql-generator. Starting with its output, it would generate schema.js and/or resolvers.js depending on "switches". Its input would some JSON-based model that drove the output.
 
-Another example is a react-component-generator. As its output it generates React component(s). Changed to a file-generator it would save to local disk. Perhaps as an alternative in a dynamic CMS-type system the react-component output could be piped to a html-generator that would go over and http-generator directly to a browser.
+Another example is a react-component-generator. As its output it generates React component(s). Chained or piped to a file-generator it would save to local disk. Perhaps as an alternative in a dynamic CMS-type system the react-component output could be piped to a html-generator that would go over and http-generator directly to a browser.
 
 # Thoughs on chaining/piping generators like unix command pipes
 Considering unix pipes with stdin, stdout, etc...
